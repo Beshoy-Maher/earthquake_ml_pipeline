@@ -1,5 +1,6 @@
 from src.ingestion import fetch_earthquake_data
 from src.preprocessing import preprocess_data
+from src.train import train_model
 import pandas as pd
 
 def run_pipeline():
@@ -10,3 +11,4 @@ def run_pipeline():
     print(f"Processed {len(df_processed)} records")
 
     df_processed.to_csv("data/processed/earthquakes.csv", index=False)
+    train_model(df_processed)

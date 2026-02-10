@@ -1,4 +1,5 @@
 from src.pipeline import run_pipeline
+from src.train import train_model
 
 
 def main():

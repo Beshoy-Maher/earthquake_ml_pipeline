@@ -10,3 +10,4 @@ def preprocess_data(df: pd.DataFrame)->pd.DataFrame:
     df['day'] = df['time'].dt.day
     df['day_of_week'] = df['time'].dt.weekday
     return df
+#done

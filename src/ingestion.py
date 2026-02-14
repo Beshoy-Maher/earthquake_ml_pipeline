@@ -4,6 +4,15 @@ import pandas as pd
 
 USGS_URL = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson"
 
+def validate_data(df: pd.DataFrame) -> bool:
+    if df.empty or df is None:
+        print("DataFrame is empty or None")
+        return False
+    
+    if not all(col in df.columns for col in ["magnitude", "time", "latitude", "longitude", "depth"]):
+        print("DataFrame is missing required columns")
+        return False
+    return True
 
 def fetch_earthquake_data(url: str = USGS_URL) -> pd.DataFrame:
     response = requests.get(url)
@@ -28,6 +37,14 @@ def fetch_earthquake_data(url: str = USGS_URL) -> pd.DataFrame:
 
     df = pd.DataFrame(records)
     return df
+
+def load_data_from_csv(file_path: str) -> pd.DataFrame:
+    df = pd.read_csv(file_path)
+    if(validate_data(df)):
+        return df
+        print("data loaded")
+    print("Loading Failed!")
+   
 
 
 if __name__ == "__main__":

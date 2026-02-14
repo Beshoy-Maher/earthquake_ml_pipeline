@@ -2,10 +2,11 @@ import pandas as pd
 import sklearn as sk
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
+from pathlib import Path
+import joblib
 
 def train_model(df: pd.DataFrame) -> sk.base.BaseEstimator:
     # Prepare the data
-    df = pd.read_csv('D:\Fall 2025\ML\Assignments\Earthquake_Prediction_Pipeline\data\processed\earthquakes.csv')
     X = df[["latitude", "longitude", "depth"]]
     y = df["magnitude"]
 
@@ -21,3 +22,5 @@ def train_model(df: pd.DataFrame) -> sk.base.BaseEstimator:
     print(f"Model R^2 Score: {score:.2f}")
 
     return model 
+def save_model(model, path: str):
+    joblib.dump(model,path)

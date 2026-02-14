@@ -1,0 +1,21 @@
+data:
+  source: usgs                # future-proof if you change data source
+  timeframe: all_day          # all_day, all_week, all_month
+  processed_path: data/processed/earthquakes.csv
+
+features:
+  target: magnitude
+  columns:
+    - latitude
+    - longitude
+    - depth
+    - hour
+    - day_of_week
+
+model:
+  type: linear_regression     # later: random_forest
+  test_size: 0.2
+  random_state: 42
+
+output:
+  model_path: models/linear_reg.joblib
